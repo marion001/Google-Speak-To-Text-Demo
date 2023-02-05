@@ -393,6 +393,7 @@ function emailButton() {
 function startButton(event) {
   if (recognizing) {
     recognition.stop();
+    //	noti(); //Test ấn nút stop hiện thông báo in ra tex
     return;
   }
   final_transcript = '';
@@ -405,6 +406,28 @@ function startButton(event) {
   showInfo('info_allow');
   showButtons('none');
   start_timestamp = event.timeStamp;
+  
+  
+  
+    ////////////////////////////
+  var timeleft = 7;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+   // document.getElementById("countdown").innerHTML = "Finished";
+    noti();
+	
+	
+	
+  } else {
+    document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+  }
+  timeleft -= 1;
+}, 1000);
+
+////////////////////////////
+  
+  
 }
 
 function showInfo(s) {
@@ -431,4 +454,18 @@ function showButtons(style) {
   copy_info.style.display = 'none';
   email_info.style.display = 'none';
 }
+  function noti() {
+var node = document.getElementById('results');
+textContent = node.textContent;
+  final_span.innerHTML = '';
+  interim_span.innerHTML = '';
+alert(textContent);
+
+startButton(event)();
+
+
+
+
+}
+
 </script>
